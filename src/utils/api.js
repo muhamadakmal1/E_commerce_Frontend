@@ -19,6 +19,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+// PRODUCTS
 export const getProducts = async () => {
   const response = await api.get('/products');
   return response.data;
@@ -29,11 +30,13 @@ export const getProduct = async (id) => {
   return response.data;
 };
 
+// ORDERS
 export const createOrder = async (orderData) => {
   const response = await api.post('/orders', orderData);
   return response.data;
 };
 
+// AUTH
 export const registerUser = async (payload) => {
   const response = await api.post('/auth/signup', payload);
   return response.data;
@@ -47,9 +50,7 @@ export const loginUser = async (payload) => {
 export const getCurrentUser = async (tokenOverride) => {
   const response = await api.get('/auth/me', {
     headers: tokenOverride
-      ? {
-          Authorization: `Bearer ${tokenOverride}`,
-        }
+      ? { Authorization: `Bearer ${tokenOverride}` }
       : undefined,
   });
   return response.data;
